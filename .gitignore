@@ -1,0 +1,9 @@
+# ===== Build artifacts =====
+# object files
+*.o
+*.obj
+
+# executables
+a.out
+myprog
+alocator
