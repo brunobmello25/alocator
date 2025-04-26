@@ -1,34 +1,37 @@
-# Compiler and flags
-CC      := gcc
-CFLAGS  := -Wall -Wextra -Iinclude -g
+# ───────────────────────────────────────────────────────
+# Makefile wrapper around CMake
+# ───────────────────────────────────────────────────────
+# Name of your executable (must match add_executable in CMakeLists.txt)
+TARGET := alocator
 
-# Directories
-SRC_DIR := src
-INC_DIR := include
+# Where to do the out-of-source build
+BUILD_DIR := build
 
-# Find all .c sources under src/
-SRCS    := $(wildcard $(SRC_DIR)/*.c)
-# Create corresponding .o names
-OBJS    := $(SRCS:.c=.o)
+# CMake generator options
+CMAKE_CFG := -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
-# Final executable name
-TARGET  := alocator
+# The CMake binary (could be cmake3 on some distros)
+CMAKE := cmake
 
-.PHONY: all run clean
+# ───────────────────────────────────────────────────────
+.PHONY: all configure build run clean
 
-all: $(TARGET)
+# Default target: configure + build
+all: configure build
 
-# Link step
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+# 1) run CMake configure (only once or whenever CMakeLists.txt changes)
+configure:
+	@mkdir -p $(BUILD_DIR)
+	@$(CMAKE) $(CMAKE_CFG) -B $(BUILD_DIR) -S .
 
-# Compile step
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# 2) actually build the target
+build:
+	@$(CMAKE) --build $(BUILD_DIR)
 
-# Convenience: build and run
+# 3) run the resulting binary
 run: all
-	./$(TARGET)
+	@$(BUILD_DIR)/$(TARGET)
 
+# wipe out the build dir
 clean:
-	rm -f $(SRC_DIR)/*.o $(TARGET)
+	@rm -rf $(BUILD_DIR)

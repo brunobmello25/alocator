@@ -1,9 +1,73 @@
-# ===== Build artifacts =====
-# object files
+# ───────────────────────────────────────────────────
+# 1) CMake / build directory
+# ───────────────────────────────────────────────────
+# Ignore the entire out-of-source build folder
+/build/
+
+# If we ever accidentally do an in-source build, ignore CMake artifacts:
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+
+compile_commands.json
+
+# ───────────────────────────────────────────────────
+# 2) Generic build artifacts
+# ───────────────────────────────────────────────────
+# Object files
 *.o
 *.obj
 
-# executables
+# Static / shared libs
+*.a
+*.so
+*.dylib
+*.dll
+
+# Executables
 a.out
-myprog
 alocator
+myprog
+
+# Coverage
+*.gcno
+*.gcda
+*.gcov
+
+# Dependency files
+*.d
+
+# ───────────────────────────────────────────────────
+# 3) IDE / Editor
+# ───────────────────────────────────────────────────
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Vim swap
+*.swp
+*~
+
+# Neovim
+nvim.shada
+
+# Emacs
+*#
+
+# backup / tmp
+*.bak
+*.tmp
+
+# tags / cscope
+tags
+cscope.*
+
+# ───────────────────────────────────────────────────
+# 4) OS junk
+# ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
