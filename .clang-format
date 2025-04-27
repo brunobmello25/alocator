@@ -1,0 +1,14 @@
+---
+# .clang-format
+# Use tabs for indentation (not spaces)
+UseTab: ForIndentation
+
+# Make each indent level exactly 1 tab
+IndentWidth: 1
+TabWidth: 1
+
+# Continuation lines are indented by one tab
+ContinuationIndentWidth: 1
+
+# (optional) pick a base style to inherit defaults for everything else
+BasedOnStyle: LLVM
