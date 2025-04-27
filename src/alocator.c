@@ -1,5 +1,19 @@
 #include "alocator.h"
-#include <stdio.h>
+#include <unistd.h>
 
-/* Definition of the sample function */
-void hello_from_alocator(void) { printf("Hello from module!\n"); }
+struct header_t {
+	size_t size;
+	unsigned is_free;
+	struct header_t *next;
+};
+
+void *mymalloc(size_t size) {
+	void *block;
+	block = sbrk(size);
+
+	if (block == (void *)-1) {
+		return NULL;
+	}
+
+	return block;
+}

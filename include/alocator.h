@@ -1,6 +1,8 @@
 #ifndef ALOCATOR_H
 #define ALOCATOR_H
 
-void hello_from_alocator(void);
+#include <unistd.h>
+
+void *mymalloc(size_t size);
 
 #endif /* ALOCATOR_H */

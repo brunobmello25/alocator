@@ -1,9 +1,7 @@
-#include "alocator.h"
 #include <stdio.h>
 
 int main(void) {
-  printf("Starting program...\n");
-  hello_from_alocator();
-  printf("Program finished.\n");
-  return 0;
+	printf("Starting program...\n");
+	printf("Program finished.\n");
+	return 0;
 }
